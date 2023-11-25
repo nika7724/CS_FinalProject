@@ -2,7 +2,6 @@ package com.example.cs_finalproject.controller;
 
 import com.example.cs_finalproject.model.Customer;
 import com.example.cs_finalproject.service.CustomerService;
-import com.example.cs_finalproject.service.StatusService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +14,9 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
-    private final StatusService statusService;
 
-    public CustomerController(final CustomerService customerService, final StatusService statusService) {
+    public CustomerController(final CustomerService customerService) {
         this.customerService = customerService;
-        this.statusService = statusService;
     }
 
     @GetMapping("/customers")
@@ -40,7 +37,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customer/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> deleteCustomer(@PathVariable("id") Integer id) {
         customerService.deleteCustomer(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
