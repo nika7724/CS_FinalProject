@@ -30,18 +30,18 @@ public class Customer {
     private LocalDate BOD;
 
     @Column(unique = true, columnDefinition = "VARCHAR(30) NOT NULL")
-    private String emailAddress;
+    private String email;
 
     @ManyToOne
     @JoinColumn(name = "status", foreignKey = @ForeignKey(name = "fk_status"), referencedColumnName = "id")
     private Status status;
 
-    public Customer(String firstName, String lastName, String address, LocalDate BOD, String emailAddress, Status status) {
+    public Customer(String firstName, String lastName, String address, LocalDate BOD, String email, Status status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.BOD = BOD;
-        this.emailAddress = emailAddress;
+        this.email = email;
         this.status = status;
 
     }
