@@ -33,9 +33,9 @@ statusRepository.save(status1);
 statusRepository.save(status2);
 
 
-Customer customer1 = new Customer("Alice", "Jensen", "Rosenbogate, 80", LocalDate.of(1977,12,23), "hi@gmail.com ", status1);
-Customer customer2 = new Customer("Bill", "Joe", "RobertJacobsensVej, 10", LocalDate.of(1987,1,15), "jo@gmail.com ", status2);
-Customer customer3 = new Customer("Mike", "Hall", "ArneJacobsensVej, 35", LocalDate.of(1970,1,30), "mimi@gmail.com ", status1);
+Customer customer1 = new Customer("Alice", "Jensen", "Rosenbogate, 80", "hi@gmail.com ", status1);
+Customer customer2 = new Customer("Bill", "Joe", "RobertJacobsensVej, 10", "jo@gmail.com ", status2);
+Customer customer3 = new Customer("Mike", "Hall", "ArneJacobsensVej, 35",  "mimi@gmail.com ", status1);
 customerRepository.save(customer1);
 customerRepository.save(customer2);
 customerRepository.save(customer3);

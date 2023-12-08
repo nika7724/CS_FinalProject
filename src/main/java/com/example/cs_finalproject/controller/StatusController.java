@@ -24,7 +24,7 @@ public StatusController(final StatusService statusService) {
     this.statusService = statusService;
 }
 
-@GetMapping("/status")
+@GetMapping("/statuses")
 public List<Status> getAllStatus() {
 return statusService.getAllStatus();
     }

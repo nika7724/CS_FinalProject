@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+//@CrossOrigin(origins = "http://localhost:5173")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -35,6 +36,7 @@ public class CustomerController {
         Customer newCustomer = customerService.createCustomer(customer, statusId);
         return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
+
 
     @DeleteMapping("/customer/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable("id") Integer id) {
