@@ -40,9 +40,9 @@ customerRepository.save(customer1);
 customerRepository.save(customer2);
 customerRepository.save(customer3);
 
-User user1 = new User("Coco", "Hansen", "coco@gmail.com", "hhii");
-User user2 = new User("Kate", "Champman","kach@gmail.com", "katkat");
-User user3 = new User("Hana", "Moss","hana@gmail.com", "hanmo");
+User user1 = new User( "Hansen", "coco@gmail.com", "hhii");
+User user2 = new User( "Champman","kach@gmail.com", "katkat");
+User user3 = new User( "Moss","hana@gmail.com", "hanmo");
 userRepository.save(user1);
 userRepository.save(user2);
 userRepository.save(user3);

@@ -14,19 +14,15 @@ public class User {
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(30) NOT NULL")
-    private String firstName;
-
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
-    private String lastName;
+    private String username;
 
     @Column(unique = true, columnDefinition = "VARCHAR(30) NOT NULL")
     private String email;
 
     @Column(unique = true, columnDefinition = "VARCHAR(30) NOT NULL")
     private String password;
-    public User(String firstName, String lastName ,String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String username ,String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
