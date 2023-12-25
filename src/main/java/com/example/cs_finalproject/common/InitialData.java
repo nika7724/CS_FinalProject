@@ -2,10 +2,9 @@ package com.example.cs_finalproject.common;
 
 import com.example.cs_finalproject.model.Customer;
 import com.example.cs_finalproject.model.Status;
-import com.example.cs_finalproject.model.User;
 import com.example.cs_finalproject.repository.CustomerRepository;
+import com.example.cs_finalproject.repository.RoleRepository;
 import com.example.cs_finalproject.repository.StatusRepository;
-import com.example.cs_finalproject.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +15,14 @@ public class InitialData implements CommandLineRunner {
 
     private final CustomerRepository customerRepository;
     private final StatusRepository statusRepository;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
 
-    public InitialData(CustomerRepository customerRepository, StatusRepository statusRepository, UserRepository userRepository) {
+    private final RoleRepository roleRepository;
+
+    public InitialData(CustomerRepository customerRepository, StatusRepository statusRepository, RoleRepository roleRepository) {
 this.customerRepository = customerRepository;
 this.statusRepository = statusRepository;
-this.userRepository = userRepository;
+this.roleRepository = roleRepository;
     }
 
     @Override
@@ -40,12 +41,17 @@ customerRepository.save(customer1);
 customerRepository.save(customer2);
 customerRepository.save(customer3);
 
-User user1 = new User( "Hansen", "coco@gmail.com", "hhii");
-User user2 = new User( "Champman","kach@gmail.com", "katkat");
-User user3 = new User( "Moss","hana@gmail.com", "hanmo");
-userRepository.save(user1);
-userRepository.save(user2);
-userRepository.save(user3);
+//Role role1 = new Role ("General");
+//Role role2 = new Role("Admin");
+//roleRepository.save(role1);
+//roleRepository.save(role2);
+//
+//User user1 = new User( "Hansen", "coco@gmail.com", "hhii", role1);
+//User user2 = new User( "Champman","kach@gmail.com", "katkat", role2);
+//User user3 = new User( "Moss","hana@gmail.com", "hanmo", role1);
+//userRepository.save(user1);
+//userRepository.save(user2);
+//userRepository.save(user3);
 
     }
 }
