@@ -20,16 +20,17 @@ public class CsFinalProjectApplication {
     }
 
     @Bean
-    CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        return args -> {
-            if(roleRepository.findByAuthority("ADMIN").isPresent())return;
-            Role adminRole =roleRepository.save(new Role("ADMIN"));
+    CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncode){
+        return args ->{
+            if(roleRepository.findByAuthority("ADMIN").isPresent()) return;
+            Role adminRole = roleRepository.save(new Role("ADMIN"));
             roleRepository.save(new Role("USER"));
 
-            Set<Role> roles =new HashSet<>();
+            Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
 
-            ApplicationUser admin = new ApplicationUser(1,"admin",passwordEncoder.encode("password"), roles);
+            ApplicationUser admin = new ApplicationUser(1, "admin", passwordEncode.encode("password"), roles);
+
             userRepository.save(admin);
         };
     }

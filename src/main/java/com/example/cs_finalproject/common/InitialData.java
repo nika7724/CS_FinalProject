@@ -15,14 +15,11 @@ public class InitialData implements CommandLineRunner {
 
     private final CustomerRepository customerRepository;
     private final StatusRepository statusRepository;
-//    private final UserRepository userRepository;
 
-    private final RoleRepository roleRepository;
 
-    public InitialData(CustomerRepository customerRepository, StatusRepository statusRepository, RoleRepository roleRepository) {
+    public InitialData(CustomerRepository customerRepository, StatusRepository statusRepository) {
 this.customerRepository = customerRepository;
 this.statusRepository = statusRepository;
-this.roleRepository = roleRepository;
     }
 
     @Override
