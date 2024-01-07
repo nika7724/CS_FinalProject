@@ -1,14 +1,20 @@
 package com.example.cs_finalproject.common;
 
+import com.example.cs_finalproject.model.ApplicationUser;
 import com.example.cs_finalproject.model.Customer;
+import com.example.cs_finalproject.model.Role;
 import com.example.cs_finalproject.model.Status;
 import com.example.cs_finalproject.repository.CustomerRepository;
 import com.example.cs_finalproject.repository.RoleRepository;
 import com.example.cs_finalproject.repository.StatusRepository;
+import com.example.cs_finalproject.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class InitialData implements CommandLineRunner {
@@ -16,10 +22,20 @@ public class InitialData implements CommandLineRunner {
     private final CustomerRepository customerRepository;
     private final StatusRepository statusRepository;
 
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public InitialData(CustomerRepository customerRepository, StatusRepository statusRepository) {
-this.customerRepository = customerRepository;
-this.statusRepository = statusRepository;
+    public InitialData(CustomerRepository customerRepository,
+                       StatusRepository statusRepository,
+                       RoleRepository roleRepository,
+                       UserRepository userRepository,
+                       PasswordEncoder passwordEncoder) {
+        this.customerRepository = customerRepository;
+        this.statusRepository = statusRepository;
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -38,6 +54,8 @@ customerRepository.save(customer1);
 customerRepository.save(customer2);
 customerRepository.save(customer3);
 
+addAdminRoleAndUser();
+
 //Role role1 = new Role ("General");
 //Role role2 = new Role("Admin");
 //roleRepository.save(role1);
@@ -50,5 +68,19 @@ customerRepository.save(customer3);
 //userRepository.save(user2);
 //userRepository.save(user3);
 
+    }
+
+    private void addAdminRoleAndUser() {
+        if (roleRepository.findByAuthority("ADMIN").isPresent()) return;
+
+        Role adminRole = roleRepository.save(new Role("ADMIN"));
+        roleRepository.save(new Role("USER"));
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(adminRole);
+
+        ApplicationUser admin = new ApplicationUser(1, "admin", passwordEncoder.encode("password"), roles);
+
+        userRepository.save(admin);
     }
 }

@@ -37,15 +37,15 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
         this.tokenService = tokenService;
     }
-        public ApplicationUser registerUser(String username, String password) {
-String encodedPassword = passwordEncoder.encode(password);
-Role userRole = roleRepository.findByAuthority("USER").get();
-Set<Role> authorities = new HashSet<>();
-authorities.add(userRole);
-            return userRepository.save(new ApplicationUser(0,username,encodedPassword,authorities));
-        }
+    public ApplicationUser registerUser(String username, String password) {
+        String encodedPassword = passwordEncoder.encode(password);
+        Role userRole = roleRepository.findByAuthority("USER").get();
+        Set<Role> authorities = new HashSet<>();
+        authorities.add(userRole);
+        return userRepository.save(new ApplicationUser(0,username,encodedPassword,authorities));
+    }
 
-        public LoginResponseDTO loginUser(String username, String password) {
+    public LoginResponseDTO loginUser(String username, String password) {
 
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
@@ -55,6 +55,5 @@ authorities.add(userRole);
         }catch (AuthenticationException e) {
             return new LoginResponseDTO(null, "");
         }
-        }
     }
-
+}
