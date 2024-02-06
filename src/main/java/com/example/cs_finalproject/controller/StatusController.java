@@ -1,5 +1,6 @@
 package com.example.cs_finalproject.controller;
 
+import com.example.cs_finalproject.model.Customer;
 import com.example.cs_finalproject.model.Status;
 import com.example.cs_finalproject.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.List;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
+@RequestMapping("/api")
 @CrossOrigin("*")
 public class StatusController {
 
@@ -32,5 +34,10 @@ public ResponseEntity<Status>getStatusById(@PathVariable("id") Integer id) {
 Status status =statusService.getStatusById(id);
 return new ResponseEntity<>(status, HttpStatus.OK);
     }
+
+//    @PutMapping("/status/{id}")
+//    public ResponseEntity<Status> updateStatus(@RequestBody Status newStatus, @PathVariable("id") Integer id) {
+//        return new ResponseEntity<>(statusService.updateStatus(id, newStatus), HttpStatus.OK);
+//    }
 }
 

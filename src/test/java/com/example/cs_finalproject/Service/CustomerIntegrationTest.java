@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.web.client.RestTemplate;
 
+import static org.aspectj.bridge.MessageUtil.fail;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -20,7 +21,7 @@ public class CustomerIntegrationTest {
     @LocalServerPort
     private int port;
 
-    private String baseUrl="http://localhost";
+    private String baseUrl;
 
     private static RestTemplate restTemplate;//is used for testing endpoint
 
@@ -35,7 +36,7 @@ public class CustomerIntegrationTest {
 
     @BeforeEach
     public void beforeSetUP() {
-        baseUrl =baseUrl +":" +port+"/customer?statusId=1";
+        baseUrl ="http://localhost:" +":" +port+"/customer?statusId=1";
     }
 
     @AfterEach
@@ -55,9 +56,20 @@ public class CustomerIntegrationTest {
         customer1.setEmail("han@gmail.com");
         customer1.setStatus(status1);
 
+        try {
         Customer newCustomer = restTemplate.postForObject(baseUrl, customer1, Customer.class);
         assertNotNull(newCustomer);
         assertThat(newCustomer.getId()).isNotNull();
+            assertNotNull(newCustomer);
+            assertThat(newCustomer.getId()).isNotNull();
+            assertThat(newCustomer.getFirstName()).isEqualTo("Pink");
+            assertThat(newCustomer.getLastName()).isEqualTo("Hansen");
+            assertThat(newCustomer.getAddress()).isEqualTo("Robert Jacobsens 60");
+            assertThat(newCustomer.getEmail()).isEqualTo("han@gmail.com");
+            assertThat(newCustomer.getStatus()).isEqualTo(status1);
+        } catch (Exception e) {
+            fail("Exception occurred: " + e.getMessage());
+        }
     }
 
 }

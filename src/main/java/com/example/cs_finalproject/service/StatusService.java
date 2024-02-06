@@ -1,4 +1,5 @@
 package com.example.cs_finalproject.service;
+import com.example.cs_finalproject.model.Customer;
 import com.example.cs_finalproject.model.Status;
 import com.example.cs_finalproject.repository.StatusRepository;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class StatusService {
         return statusRepository.findById(id).orElse(null);
     }
 
-    //
+//    //update
+//    public Status updateStatus(Integer id, Status newStatus) {
+//        if(statusRepository.findById(id).isEmpty()) {
+//            return null;
+//        }
+//        return statusRepository.save(newStatus);
+//    }
 }
 
